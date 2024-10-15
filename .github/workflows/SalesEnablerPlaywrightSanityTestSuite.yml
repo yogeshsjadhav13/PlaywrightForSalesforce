@@ -1,0 +1,63 @@
+name: SanityTestSuite SalesEnabler Playwright
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the tests on'
+        required: true
+        default: 'main'
+jobs:
+  build:
+    #timeout-minutes: 60
+    #runs-on: [ medium, telia-managed, Linux, X64 ]
+    runs-on: [ec2, Linux, X64]
+    environment:
+      name: UATEnvironment
+    steps:
+    - name: Fetch environment secrets
+      env:
+        ARTIFACTORY_USERNAME: "${{ secrets.ARTIFACTORY_READER_USERNAME }}"
+        ARTIFACTORY_PASSWORD: "${{ secrets.ARTIFACTORY_READER_PASSWORD }}"
+        https_proxy: http://proxy-se.ddc.teliasonera.net:8080
+        http_proxy: http://proxy-se.ddc.teliasonera.net:8080
+        no_proxy: telia.se,localhost,teliacompany.net,actions.githubusercontent.com
+        NPM_ALWAYS_AUTH: true 
+        NPM_CONFIG_REGISTRY: "https://jfrog.teliacompany.io/artifactory/api/npm/common-npmjs-npm-remote-cache/"
+        NPM_CONFIG_NOPROXY: "jfrog.teliacompany.io"
+      run: echo $ARTIFACTORY_USERNAME $ARTIFACTORY_PASSWORD 
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - run: |
+        JFROG_AUTH=$(base64 -w 0 <<< '${{ secrets.JFROG_NPM_USER }}:${{ secrets.JFROG_NPM_PASSWORD }}')
+        echo "//jfrog.teliacompany.io/artifactory/api/npm/common-npmjs-npm-remote-cache/:_auth=${JFROG_AUTH}" >> .npmrc
+    - name: Install dependencies
+      run: npm install
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      env:
+        ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        CLIENTID: ${{ secrets.CLIENTID }}
+        CLIENTSECRET: ${{ secrets.CLIENTSECRET }}
+        SECURITYTOKEN: ${{ secrets.SECURITYTOKEN }}
+        ENVIRONMENTURL: ${{ secrets.ENVIRONMENTURL }}
+        JIRABaseURL: ${{ secrets.JIRABASEURL }}
+        JIRAusername: ${{ secrets.JIRAUSERNAME }}
+        JIRApassword: ${{ secrets.JIRAPASSWORD }}
+      run: npx playwright test ./tests/SalesEnabler/SanitySuite
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: Screenshots
+        path: test-results/
+        retention-days: 30
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30

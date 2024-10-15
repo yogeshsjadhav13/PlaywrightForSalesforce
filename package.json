@@ -1,0 +1,24 @@
+{
+  "name": "amandab2bsalestestautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "CucumberTest" : "npx cucumber-js --retry 1 --exit --format html:cucumber-report.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "playwright": "^1.33.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^11.0.1",
+    "axios": "^1.3.5",
+    "exceljs": "^4.4.0",
+    "mammoth": "^1.6.0",
+    "pdf-parse": "^1.1.1",
+    "playwright-chromium": "^1.40.1"
+  }
+}

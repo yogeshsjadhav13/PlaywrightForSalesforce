@@ -1,0 +1,9 @@
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/resources-credentials/
+/allure-report/
+/allure-results/
+/tests/ZJunkCode/
+playwright.config.js
