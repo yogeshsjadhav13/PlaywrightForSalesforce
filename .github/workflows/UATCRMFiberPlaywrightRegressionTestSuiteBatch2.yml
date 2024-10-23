@@ -1,7 +1,9 @@
 name: RegressionTestSuite UAT CRM Fiber Playwright Batch2
+#on:
+  #schedule:
+  #- cron: "00 17 * * 1-5"
 on:
-  schedule:
-  - cron: "15 17 * * 1-5"
+  workflow_dispatch:
 jobs:
   build:
     #timeout-minutes: 60

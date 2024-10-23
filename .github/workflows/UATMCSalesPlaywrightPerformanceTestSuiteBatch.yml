@@ -1,7 +1,9 @@
 name: PerformanceTestSuite UAT MC Sales Playwright Batch
+#on:
+  #schedule:
+  #- cron: "00 17 * * 1-5"
 on:
-  schedule:
-  - cron: "00 12 * * 1-5"
+  workflow_dispatch:
 jobs:
   build:
     #timeout-minutes: 60
