@@ -5,16 +5,16 @@ const config = {
   retries: 1,
   //by default playwright runs 5 tests parallely
   workers: 1,
-  timeout: 3000 * 1000,
+  timeout: 3000 * 100,
   expect: {
-    timeout: 300000
+    timeout: 30000
   },
 reporter: 'html',
 //reporter: [['list', { printSteps: false }]],
 //fullyParallel: true,
 use:{
- actionTimeout: 300 * 1000,
- navigationTimeout: 300 * 1000,
+ actionTimeout: 300 * 100,
+ navigationTimeout: 300 * 100,
  browserName: 'chromium',
  //...devices['iPad Pro 11 landscape'],
  headless: true,
