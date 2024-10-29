@@ -9,8 +9,8 @@ const config = {
   expect: {
     timeout: 30000
   },
-reporter: 'html',
-//reporter: [['list', { printSteps: false }]],
+//reporter: 'html',
+reporter: [['list', { printSteps: false }]],
 //fullyParallel: true,
 use:{
  actionTimeout: 300 * 100,
