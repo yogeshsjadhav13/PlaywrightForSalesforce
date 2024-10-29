@@ -25,7 +25,7 @@ jobs:
         JIRABaseURL: ${{ secrets.JIRABASEURL }}
         JIRAusername: ${{ secrets.JIRAUSERNAME }}
         JIRApassword: ${{ secrets.JIRAPASSWORD }}
-      run: npx playwright test ./tests/ApplicationSalesforce
+      run: npx playwright test ./tests/ApplicationEcommerce
     - uses: actions/upload-artifact@v4
       if: always()
       with:
