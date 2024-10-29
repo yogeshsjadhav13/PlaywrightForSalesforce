@@ -29,6 +29,8 @@ class UtilityFunctions {
             secretsData.set("JIRABaseURL", process.env.JIRABaseURL);
             secretsData.set("JIRAusername", process.env.JIRAusername);
             secretsData.set("JIRApassword", process.env.JIRApassword);
+            secretsData.set("eCommerceUsername", credentials.eCommerceUsername);
+            secretsData.set("eCommercePassword", credentials.eCommercePassword);
         } else {
             try {
                 const environmentParameters = require('../../resources-credentials/environmentParameters.json');
@@ -44,6 +46,8 @@ class UtilityFunctions {
                 secretsData.set("JIRABaseURL", credentials.JIRABaseURL);
                 secretsData.set("JIRAusername", credentials.JIRAusername);
                 secretsData.set("JIRApassword", credentials.JIRApassword);
+                secretsData.set("eCommerceUsername", credentials.eCommerceUsername);
+                secretsData.set("eCommercePassword", credentials.eCommercePassword);
             } catch (error) {
                 console.error('Failed to load credentials:', error);
                 process.exit(1);
@@ -236,6 +240,9 @@ class UtilityFunctions {
         if (testName.includes('Salesforce')) {
             Sheet = 'Salesforce';
         }
+        if (testName.includes('Ecommerce')) {
+            Sheet = 'Ecommerce';
+        }
         if (testName.includes('MCOnline')) {
             Sheet = 'MCOnline';
         }
@@ -284,6 +291,9 @@ class UtilityFunctions {
         }
         if (testName.includes('Salesforce')) {
             Sheet = 'Salesforce';
+        }
+        if (testName.includes('Ecommerce')) {
+            Sheet = 'Ecommerce';
         }
         if (testName.includes('MCOnline')) {
             Sheet = 'MCOnline';
@@ -354,6 +364,9 @@ class UtilityFunctions {
         if (testName.includes('Salesforce')) {
             Sheet = 'Salesforce';
         }
+        if (testName.includes('Ecommerce')) {
+            Sheet = 'Ecommerce';
+        }
         if (testName.includes('MCOnline')) {
             Sheet = 'MCOnline';
         }
@@ -406,6 +419,9 @@ class UtilityFunctions {
         }
         if (testName.includes('Salesforce')) {
             Sheet = 'Salesforce';
+        }
+        if (testName.includes('Ecommerce')) {
+            Sheet = 'Ecommerce';
         }
         if (testName.includes('MCOnline')) {
             Sheet = 'MCOnline';
