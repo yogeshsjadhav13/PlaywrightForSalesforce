@@ -6,4 +6,3 @@ node_modules/
 /allure-report/
 /allure-results/
 /tests/ZJunkCode/
-playwright.config.js
