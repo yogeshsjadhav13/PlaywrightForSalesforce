@@ -24,7 +24,6 @@ test('TC001_Ecommerce_Create-Opportunity.spec.js', async function ({ request }) 
   var data = await response.json();
   const token = data.token;
   const userID = data.userId;
-  console.log(data);
 
 
   //Step 3 - Add product in the Ecommerce application
