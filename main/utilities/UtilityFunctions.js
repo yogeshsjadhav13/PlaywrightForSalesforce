@@ -29,8 +29,8 @@ class UtilityFunctions {
             secretsData.set("JIRABaseURL", process.env.JIRABaseURL);
             secretsData.set("JIRAusername", process.env.JIRAusername);
             secretsData.set("JIRApassword", process.env.JIRApassword);
-            secretsData.set("eCommerceUsername", credentials.eCommerceUsername);
-            secretsData.set("eCommercePassword", credentials.eCommercePassword);
+            secretsData.set("eCommerceUsername", process.env.eCommerceUsername);
+            secretsData.set("eCommercePassword", process.env.eCommercePassword);
         } else {
             try {
                 const environmentParameters = require('../../resources-credentials/environmentParameters.json');

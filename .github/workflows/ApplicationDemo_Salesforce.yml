@@ -1,0 +1,40 @@
+name: ApplicationDemo Salesforce
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      env:
+        ENVIRONMENT: UATEnvironment
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        CLIENTID: ${{ secrets.CLIENTID }}
+        CLIENTSECRET: ${{ secrets.CLIENTSECRET }}
+        SECURITYTOKEN: ${{ secrets.SECURITYTOKEN }}
+        ENVIRONMENTURL: ${{ secrets.ENVIRONMENTURL }}
+        JIRABaseURL: ${{ secrets.JIRABASEURL }}
+        JIRAusername: ${{ secrets.JIRAUSERNAME }}
+        JIRApassword: ${{ secrets.JIRAPASSWORD }}
+      run: npx playwright test ./tests/ApplicationSalesforce
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: Screenshots
+        path: test-results/
+        retention-days: 30
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
