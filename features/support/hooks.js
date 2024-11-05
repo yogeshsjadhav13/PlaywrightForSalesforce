@@ -6,6 +6,7 @@ const { devices } = require('playwright');
 Before(async function () {
       //Setting up first browser page
       this.browser = await playwright.chromium.launch({headless: false});
+      this.requestContext = await playwright.request.newContext();
       //this.iphone13 = devices['iPad Pro 11 landscape'];
       /*this.context = await this.browser.newContext({
         ...this.iphone13,
