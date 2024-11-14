@@ -22,10 +22,7 @@ test('TC002_Ecommerce_Dummyjson-APITest.spec.js', async function ({ request }) {
 
   response = await request.fetch('https://dummyjson.com/products');
   data = await response.json();
-  console.log(data);
-
-  
-
+  console.log(JSON.stringify(data));
 
 
 });
