@@ -338,7 +338,7 @@ class UtilityFunctions {
     async executeApexCode(adminPage, apexCode) {
         const secretsData = await this.fetchEnvironmentCreds();
         //await adminPage.goto(secretsData.get("environmentURL"));
-        await adminPage.goto("https://test.salesforce.com/");
+        await adminPage.goto("https://login.salesforce.com/");
         await adminPage.locator("#username").type(secretsData.get("username"));
         await adminPage.locator("#password").type(secretsData.get("password"));
         await adminPage.locator("#Login").click();

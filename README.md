@@ -5,6 +5,11 @@
 1. Visual Studio installed
 2. Node.js installed
 3. Access to Github.com
+4. Salesforce credentials (Username and Password) and Connected App created in Salesforce (clientid, clientsecret)
+5. Generate security token in Salesforce by using below URL. Just replace your org URL in place of `https://xxxx-dev-ed.develop.my.salesforce.com`
+for e.g. 
+https://xxxx-dev-ed.develop.my.salesforce.com/_ui/system/security/ResetApiTokenEdit?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&setupid=ResetApiToken
+
 
 ## Configuration Steps for Playwright and Test Automation Repository
 
@@ -37,7 +42,7 @@
             "clientId": "XXXXXXXX",
             "clientSecret": "XXXXXXXX",
             "securityToken": "XXXXXXXX",
-            "environmentURL": "https://XXXXXXXXX--UAT.sandbox.my.salesforce.com",
+            "environmentURL": "https://XXXXXXXXX--dev-ed.develop.my.salesforce.com",
             "JIRABaseURL": "https://jira.atlassian.XXX.net",
             "JIRAusername": "XXXXXXXX",
             "JIRApassword": "XXXXXXXX",
