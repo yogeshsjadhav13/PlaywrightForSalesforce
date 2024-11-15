@@ -8,8 +8,9 @@
 4. Salesforce credentials (Username and Password) and Connected App created in Salesforce (clientid, clientsecret)
 5. Generate security token in Salesforce by using below URL. Just replace your org URL in place of `https://xxxx-dev-ed.develop.my.salesforce.com`
 for e.g. 
+```sh
 https://xxxx-dev-ed.develop.my.salesforce.com/_ui/system/security/ResetApiTokenEdit?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&setupid=ResetApiToken
-
+```
 
 ## Configuration Steps for Playwright and Test Automation Repository
 
