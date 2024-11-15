@@ -64,13 +64,22 @@ When('you query account record ID', { timeout: 100 * 1000 }, async function () {
     this.accountId = this.data.records[0].Id;
 });
 
+
 When('create opportunity via salesforce API', { timeout: 100 * 1000 }, async function () {
+  this.queryOpp = "select id from RecordType where SobjectType = 'Opportunity'";
+  this.queryUrlOpp = this.environmentURL + `/services/data/v51.0/query?q=${encodeURIComponent(this.queryOpp)}`;
+  this.queryResponseOpp = await this.requestContext.fetch(this.queryUrlOpp, 
+    {
+    headers: {Authorization: `Bearer ${this.environmentAccessToken}`}
+  });
+  this.data = await this.queryResponseOpp.json();
+  this.OppRecordTypeId = this.data.records[0].Id;
   this.url = this.environmentURL + '/services/data/v52.0/sobjects/Opportunity/';
   this.accountData = {
       AccountId: this.accountId,
       CloseDate: '2024-11-06',
-      Name: 'Playwright Opportunity 12345',
-      RecordTypeId: '012dL000000rJNtQAM',
+      Name: this.LocalTestData.get("OpportunityName"),
+      RecordTypeId: this.OppRecordTypeId,
       StageName: 'Qualification'
   };
   this.requestContextPart = {
@@ -86,7 +95,7 @@ When('create opportunity via salesforce API', { timeout: 100 * 1000 }, async fun
   console.log(this.opportunityID);
   this.Opportunity = ["",""];
   this.Opportunity[0] = this.opportunityID;
-  this.Opportunity[1] = 'Playwright Opportunity 12345';
+  this.Opportunity[1] = this.LocalTestData.get("OpportunityName");
 });
 
 
