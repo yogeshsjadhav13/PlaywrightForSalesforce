@@ -1,6 +1,5 @@
 const { LoginPage } = require('../pageObjects/LoginPage');
 const { OpportunityPage } = require('../pageObjects/OpportunityPage');
-const { FACartPage } = require('../pageObjects/FACartPage');
 const { QuotePage } = require('../pageObjects/QuotePage');
 const { ContractPage } = require('../pageObjects/ContractPage');
 const { ContactPage } = require('../pageObjects/ContactPage');
@@ -13,7 +12,6 @@ class POManager {
         this.page = page;
         this.loginPage = new LoginPage(this.page);
         this.opportunityPage = new OpportunityPage(this.page);
-        this.faCartPage = new FACartPage(this.page);
         this.quotePage = new QuotePage(this.page);
         this.contractPage = new ContractPage(this.page);
         this.contactPage = new ContactPage(this.page);
@@ -27,10 +25,6 @@ class POManager {
 
     getOpportunityPage() {
         return this.opportunityPage;
-    }
-
-    getFACartPage() {
-        return this.faCartPage;
     }
 
     getQuotePage() {
