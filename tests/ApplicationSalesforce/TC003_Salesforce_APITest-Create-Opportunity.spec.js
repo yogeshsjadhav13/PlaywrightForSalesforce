@@ -57,7 +57,7 @@ test('TC003_Salesforce_SalesforceAPITest-Create-Opportunity', async function ({r
   const accountData = {
       AccountId: accountId,
       CloseDate: '2024-11-06',
-      Name: 'Playwright Opportunity 12345',
+      Name: LocalTestData.get("OpportunityName"),
       RecordTypeId: OppRecordTypeId,
       StageName: 'Qualification'
   };
