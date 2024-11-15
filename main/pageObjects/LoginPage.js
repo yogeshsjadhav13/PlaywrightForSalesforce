@@ -38,12 +38,12 @@ class LoginPage {
         };
         await utilityFunction.RunUpdateDML("User", userID, updatedData);
         await this.page.goto(userLoginURL);
-        await this.page.getByRole('button', { name: 'Appstartare' }).click();
-        await this.page.getByPlaceholder('Sök appar och objekt...').click();
-        await this.page.getByPlaceholder('Sök appar och objekt...').fill(SalesApplication);
-        await this.page.getByRole('option', { name: SalesApplication }).first().click();
-        await this.page.getByRole('link', { name: 'Startsida', exact: true }).click();
-        await this.page.getByRole('link', { name: 'Konton', exact: true }).click();
+        await this.page.goto(secretsData.get("environmentURL") + "/lightning/page/home");
+        await this.page.getByRole('button', { name: 'App Launcher' }).click();
+        await this.page.getByPlaceholder('Search apps and items...').click();
+        await this.page.getByPlaceholder('Search apps and items...').fill('Sales');
+        await this.page.getByRole('option', { name: 'Sales', exact: true }).click();
+        await this.page.getByRole('link', { name: 'Home' }).click();
     }
 
 
