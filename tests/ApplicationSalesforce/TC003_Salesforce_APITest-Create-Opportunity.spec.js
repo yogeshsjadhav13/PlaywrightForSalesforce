@@ -41,12 +41,24 @@ test('TC003_Salesforce_SalesforceAPITest-Create-Opportunity', async function ({r
   const accountId = data.records[0].Id;
 
 
+  //Salesforce query api to fetch opportunity record type id
+  const queryOpp = "select id from RecordType where SobjectType = 'Opportunity'";
+  const queryUrlOpp = environmentURL + `/services/data/v51.0/query?q=${encodeURIComponent(queryOpp)}`;
+  const queryResponseOpp = await request.fetch(queryUrlOpp, 
+    {
+    headers: {Authorization: `Bearer ${environmentAccessToken}`}
+  });
+  data = await queryResponseOpp.json();
+  const OppRecordTypeId = data.records[0].Id;
+
+
+  //Salesforce api to create opportunity record
   const url = environmentURL + '/services/data/v52.0/sobjects/Opportunity/';
   const accountData = {
       AccountId: accountId,
       CloseDate: '2024-11-06',
       Name: 'Playwright Opportunity 12345',
-      RecordTypeId: '012dL000000rJNtQAM',
+      RecordTypeId: OppRecordTypeId,
       StageName: 'Qualification'
   };
   const requestPart = {
@@ -62,6 +74,7 @@ test('TC003_Salesforce_SalesforceAPITest-Create-Opportunity', async function ({r
   console.log(opportunityID);
 
 
+  //Salesforce api to delete opportunity record created above
   const apiUrl = environmentURL + `/services/data/v50.0/sobjects/Opportunity/`+opportunityID;
   await request.delete(apiUrl, {
       headers: {

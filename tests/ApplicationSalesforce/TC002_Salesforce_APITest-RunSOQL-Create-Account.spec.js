@@ -53,6 +53,7 @@ test('TC002_Salesforce_SalesforceAPITest', async function ({ browser, request })
   console.log(data.records[0].Name);
 
 
+  //Create Account record
   const url = environmentURL + '/services/data/v52.0/sobjects/Account/';
   const accountData = {
       Name: 'Test Account',
@@ -68,6 +69,15 @@ test('TC002_Salesforce_SalesforceAPITest', async function ({ browser, request })
   response = await request.post(url, requestPart);
   const result = await response.json();
   console.log(result);
+
+  
+  //Delete account record
+  const apiUrl = environmentURL + `/services/data/v50.0/sobjects/Account/`+result.id;
+  await request.delete(apiUrl, {
+      headers: {
+          Authorization: `Bearer ${environmentAccessToken}`
+      }
+  });
 
 
   //Close all browserss
