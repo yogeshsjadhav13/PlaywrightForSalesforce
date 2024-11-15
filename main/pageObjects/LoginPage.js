@@ -16,7 +16,7 @@ class LoginPage {
         await this.passwordTextbox.type(secretsData.get("password"));
         await this.loginButton.click();
         //await this.page.getByRole('link', { name: 'Home', exact: true }).click();
-        await this.page.getByTitle('Home Tab').click();
+        //await this.page.getByTitle('Home Tab').click();
         await this.page.goto(secretsData.get("environmentURL") + "/home/home.jsp");
         await this.page.goto(secretsData.get("environmentURL") + "/lightning/page/home");
         await this.page.getByRole('button', { name: 'App Launcher' }).click();
